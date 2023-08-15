@@ -1,9 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+import { persistReducer, FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER, } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage';
 import storageSession from 'redux-persist/lib/storage/session';
-import { authReducer } from './reducer';
+import { authReducer, imageReducer } from './reducer';
 const persistConfig = {
     key: 'root',
     storage,
@@ -16,6 +21,11 @@ const authPersistConfig = {
     storage: storageSession,
     // blacklist: ['isAuthenticated'],
 };
+
+const imagePersistConfig = {
+    key: 'images',
+    storage,
+};
 const rootReducers = (state, action) => {
     if (action.type === 'clear/clearStorages') {
         storage.removeItem('persist:root');
@@ -27,9 +37,16 @@ const rootReducers = (state, action) => {
 
 const appReducers = combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
+    image: persistReducer(imagePersistConfig, imageReducer),
 });
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 export const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 export let persitor = persistStore(store);
