@@ -1,12 +1,22 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Layout from '../components/Layout';
+import { Home } from '../pages';
 
 function CustomRouterProvider() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+      ],
+    },
+  ]);
   return (
-    <BrowserRouter future={{ v7_startTransition: true }}>
-          <Routes>
-            <Route path="/" element={<div>Hello</div>} /> 👈 Renders at /app/
-          </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 
