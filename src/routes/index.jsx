@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { Suspense, lazy } from "react";
 const Home = lazy(() => import("../pages/Home"));
 const Gallery = lazy(() => import("../pages/Gallery"));
