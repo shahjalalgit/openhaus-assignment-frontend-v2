@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 import { PhotoAlbum } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import Header from "../components/common/Header";
+import { Header } from "../components/common";
 
 // import optional lightbox plugins
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
@@ -19,7 +19,6 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 // default data
 import defaultGalleryImages from "../helper/galleryImages.js";
-
 
 function Gallery() {
   const imageList = useSelector((state) => state.image.images);

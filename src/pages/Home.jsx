@@ -1,8 +1,7 @@
 //import components
 import { Button, Col, Form, Image, Row } from "react-bootstrap";
-import CustomModal from "../components/common/CustomModal";
 import ImageLibrary from "../components/ImageLibrary";
-import Header from "../components/common/Header";
+import { CustomModal, Header } from "../components/common";
 
 //import hooks
 import { useCallback, useState } from "react";
