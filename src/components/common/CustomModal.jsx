@@ -22,8 +22,8 @@ function CustomModal({show, onClose, children}) {
 
 
 CustomModal.propTypes = {
-    show: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
+    show: PropTypes.bool,
+    onClose: PropTypes.func,
     children: PropTypes.array
   };
 export default CustomModal

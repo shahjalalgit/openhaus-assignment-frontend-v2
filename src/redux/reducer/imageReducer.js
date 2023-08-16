@@ -23,13 +23,19 @@ export const imageSlice = createSlice({
         },
         removeImages: (state, action) => {
             if(!action.payload.id) toast.error('Something went wrong! Try again.')
-            const newImages = state.images.filter(item => item.id !== action.payload.id)
+            const newImages = state.images.filter(img => img.id !== action.payload.id)
             state.images = newImages
             toast.success('Image successfully removed.')
-        }
+        },
+        updateImages: (state, action) => {
+            if(!action.payload.id) toast.error('Something went wrong! Try again.')
+            const newImages = state.images.map(img => img.id === action.payload.id ? { ...img, ...action.payload.newImage } : img)
+            state.images = newImages
+            toast.success('Image successfully updated.')
+        },
     },
 });
 
-export const { setImages, removeImages } = imageSlice.actions;
+export const { setImages, removeImages, updateImages } = imageSlice.actions;
 
 export default imageSlice.reducer;

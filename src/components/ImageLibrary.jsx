@@ -4,10 +4,9 @@ import addIcon from "../assets/add.png"
 import { PropTypes } from "prop-types";
 function ImageLibrary({onClick}) {
   const imageList = useSelector((state) => state.image.images);
-  console.log({imageList});
   return (
     <div className="d-flex gap-2 flex-wrap">
-      {imageList.length &&
+      {imageList.length ?
         imageList?.map((item, index) => (
           <Image
             key={index}
@@ -16,8 +15,8 @@ function ImageLibrary({onClick}) {
             width={"100px"}
             height={"100px"}
             onClick={() => onClick(item)}
-          />
-        ))}
+          /> 
+        )) : <></>}
         <div
           className="rounded d-flex justify-content-center align-items-center "
           style={{ width: "100px", height: "100px", background: "#F5F5F5" }}
@@ -36,6 +35,6 @@ function ImageLibrary({onClick}) {
 }
 
 ImageLibrary.propTypes = {
-    onClick: PropTypes.function,
+    onClick: PropTypes.func,
   };
 export default ImageLibrary;

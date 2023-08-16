@@ -1,7 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Layout from '../components/Layout';
-import { Home } from '../pages';
-
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "../components/layout";
+import { Suspense, lazy } from "react";
+const Home = lazy(() => import("../pages/Home"));
+const Gallery = lazy(() => import("../pages/Gallery"));
 function CustomRouterProvider() {
   const router = createBrowserRouter([
     {
@@ -10,14 +11,24 @@ function CustomRouterProvider() {
       children: [
         {
           path: "",
-          element: <Home />,
+          element: (
+            <Suspense fallback={<div>Loading</div>}>
+              <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/gallery",
+          element: (
+            <Suspense fallback={<div>Loading</div>}>
+              <Gallery />
+            </Suspense>
+          ),
         },
       ],
     },
   ]);
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default CustomRouterProvider
+export default CustomRouterProvider;
