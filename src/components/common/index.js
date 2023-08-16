@@ -1,2 +1,2 @@
 export {default as CustomModal} from "./CustomModal"
-export {default as Header} from "./Header"
+export {default as CustomHeader} from "./CustomHeader"

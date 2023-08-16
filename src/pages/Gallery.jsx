@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 import { PhotoAlbum } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import { Header } from "../components/common";
+import CustomHeader from "../components/common/CustomHeader.jsx";
 
 // import optional lightbox plugins
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
@@ -44,7 +44,7 @@ function Gallery() {
   );
   return (
     <div>
-      <Header title={"Gallery"} />
+      <CustomHeader title={"Gallery"} />
       <div className="p-2">
         <PhotoAlbum
           photos={photos?.length ? photos : defaultGalleryImages}

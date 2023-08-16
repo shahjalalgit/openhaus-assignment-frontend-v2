@@ -1,7 +1,6 @@
 //import components
 import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import ImageLibrary from "../components/ImageLibrary";
-import { CustomModal, Header } from "../components/common";
 
 //import hooks
 import { useCallback, useState } from "react";
@@ -14,6 +13,8 @@ import {
   removeImages,
   updateImages,
 } from "../redux/reducer/imageReducer";
+import CustomHeader from "../components/common/CustomHeader";
+import { CustomModal } from "../components/common";
 
 function Home() {
   //dispatch hook
@@ -88,12 +89,12 @@ function Home() {
 
   return (
     <div>
-      <Header title={"Image Library"} />
+      <CustomHeader title={"Image Library"} />
 
       <div className="d-flex gap-2 flex-wrap align mt-2">
         <ImageLibrary onClick={_handleModal} />
         <CustomModal show={modalShow} onClose={closeModal}>
-          <Header title={"Image Details"} enableBgColor={false} />
+          <CustomHeader title={"Image Details"} enableBgColor={false} />
           <Form onSubmit={handleSubmit(_handleSubmit)}>
             {formFields?.map((field) => (
               <Form.Group key={field?.id} className="mb-3">
