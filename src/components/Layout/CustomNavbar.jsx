@@ -6,7 +6,7 @@ function CustomNavbar() {
   return (
     <Navbar expand="md" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand  onClick={()=> navigate('/')}>
           <img
             src={brandLogo}
             width="30"

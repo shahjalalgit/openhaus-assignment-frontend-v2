@@ -68,7 +68,7 @@ const renderPhoto = ({ imageProps: { alt, style, ...restImageProps } }) => (
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 const photosSize = [
   { id: "1", width: 3840, height: 2640 },
-  { id: "2", width: 3840, height: 721 },
+  { id: "2", width: 3840, height: 2721 },
   { id: "3", width: 3840, height: 5760 },
   { id: "4", width: 1080, height: 721 },
   { id: "5", width: 1080, height: 1620 },
