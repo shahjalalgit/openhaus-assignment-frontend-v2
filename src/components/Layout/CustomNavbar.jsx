@@ -1,6 +1,13 @@
+//import components
 import { Container, Nav, Navbar } from "react-bootstrap";
-import brandLogo from "../../assets/openhaus-brand-logo.png";
+
+//import hooks
 import { useNavigate } from "react-router-dom";
+
+// import image/icons
+import brandLogo from "../../assets/openhaus-brand-logo.png";
+
+
 function CustomNavbar() {
   const navigate = useNavigate();
   return (

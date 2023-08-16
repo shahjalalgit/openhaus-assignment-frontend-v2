@@ -1,6 +1,6 @@
-import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
-
+//import components
+import Modal from 'react-bootstrap/Modal';
 function CustomModal({show, onClose, children}) {
 
   return (
@@ -20,7 +20,7 @@ function CustomModal({show, onClose, children}) {
   );
 }
 
-
+//props types
 CustomModal.propTypes = {
     show: PropTypes.bool,
     onClose: PropTypes.func,

@@ -1,22 +1,33 @@
+//import components
 import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import Header from "../components/common/Header";
 import CustomModal from "../components/common/CustomModal";
-import { useState } from "react";
+import ImageLibrary from "../components/ImageLibrary";
+
+//import hooks
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+
+//import redux state action
 import {
   setImages,
   removeImages,
   updateImages,
 } from "../redux/reducer/imageReducer";
-import ImageLibrary from "../components/ImageLibrary";
 
 function Home() {
+  //dispatch hook
+  const dispatch = useDispatch();
+  // modal stats
   const [modalShow, setModalShow] = useState(false);
   const [isOpenImageView, setIsOpenImageView] = useState(false);
+
+  // edit data state
   const [editData, setEditData] = useState(null);
+
+  // boolean state for tracking is update or not
   const [isUpdateImage, setIsUpdateImage] = useState(false);
-  const dispatch = useDispatch();
 
   const {
     register,
@@ -28,15 +39,20 @@ function Home() {
     values: { sourceURL: "" },
   });
 
+  // handle modal for close
   const closeModal = () => {
     reset({ sourceURL: "" });
     setModalShow(false);
     setIsUpdateImage(false);
   };
+
+  // handle modal for close
   const closeModalImageView = () => {
     reset({ sourceURL: "" });
     setIsOpenImageView(false);
   };
+
+  // handle new image and updated image to set redux store
   const _handleSubmit = (data) => {
     isUpdateImage
       ? dispatch(updateImages({ id: editData?.id, newImage: data }))
@@ -44,14 +60,18 @@ function Home() {
     closeModal();
     reset({ sourceURL: "" });
   };
-  const _handleModal = (editData) => {
+
+  //set to open modal as required and useCallback for prevent reRender of ImageLibrary, because this use as ref fuc
+  const _handleModal = useCallback((editData) => {
     if (editData) {
       setEditData(editData);
       setIsOpenImageView(true);
     } else {
       setModalShow(true);
     }
-  };
+  }, []);
+
+  // handle image update
   const _handleUpdateImage = () => {
     closeModalImageView();
     editData?.sourceURL && setValue("sourceURL", editData?.sourceURL);
@@ -61,11 +81,12 @@ function Home() {
     setIsUpdateImage(true);
   };
 
+  // handle image remove
   const _handleRemoveImage = () => {
     closeModalImageView();
     dispatch(removeImages(editData));
   };
-  console.log({errors});
+
   return (
     <div>
       <Header title={"Image Library"} />
@@ -142,6 +163,7 @@ function Home() {
   );
 }
 
+// form fields data
 const formFields = [
   {
     id: 1,
@@ -165,4 +187,5 @@ const formFields = [
     required: false
   },
 ];
+
 export default Home;

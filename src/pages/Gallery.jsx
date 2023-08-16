@@ -1,17 +1,26 @@
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+//import hooks
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+
+//import components
 import Header from "../components/common/Header";
+import { Image } from "react-bootstrap";
 import { PhotoAlbum } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import { useMemo, useState } from "react";
+
 // import optional lightbox plugins
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+// default data
 import defaultGalleryImages from "../helper/galleryImages.js";
-import { Image } from "react-bootstrap";
+
+
 function Gallery() {
   const imageList = useSelector((state) => state.image.images);
   const [index, setIndex] = useState(-1);
@@ -56,7 +65,7 @@ function Gallery() {
     </div>
   );
 }
-
+// custom photo component fuc
 const renderPhoto = ({ imageProps: { alt, style, ...restImageProps } }) => (
   <Image
     alt={alt}
