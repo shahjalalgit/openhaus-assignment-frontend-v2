@@ -6,11 +6,10 @@ import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 //import components
-
 import { Image } from "react-bootstrap";
 import { PhotoAlbum } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import Header from "../components/common/Header.jsx";
+import Header from "../components/common/Header";
 
 // import optional lightbox plugins
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
