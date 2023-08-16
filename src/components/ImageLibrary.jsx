@@ -4,13 +4,14 @@ import addIcon from "../assets/add.png"
 import { PropTypes } from "prop-types";
 function ImageLibrary({onClick}) {
   const imageList = useSelector((state) => state.image.images);
+  console.log({imageList});
   return (
     <div className="d-flex gap-2 flex-wrap">
       {imageList.length ?
         imageList?.map((item, index) => (
           <Image
             key={index}
-            src={item?.sourceURL}
+            src={item?.thumbnailURL || item?.lowResURL || item?.sourceURL}
             rounded
             width={"100px"}
             height={"100px"}
